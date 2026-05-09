@@ -327,7 +327,8 @@ export default async function ProgrammaticPage({
             </section>
 
             <TrustSignals />
-        </article>
+            </article>
+        </main>
     );
 }
 

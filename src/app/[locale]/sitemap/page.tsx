@@ -27,7 +27,6 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     languages['x-default'] = `${siteUrl}/sitemap`;
 
     return {
-    return {
         title: locale === 'de' ? 'Sitemap – Alle Seiten' : 'Sitemap',
         description: `Übersicht aller Tools, Ratgeber und rechtlichen Informationen von ${DOMAIN}.`,
         alternates: {
