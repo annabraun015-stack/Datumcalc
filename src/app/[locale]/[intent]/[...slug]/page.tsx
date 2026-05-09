@@ -33,8 +33,6 @@ export const dynamicParams = false;
 import { InstantResultClient } from '@/components/seo/InstantResultClient';
 import { ToolSchema, FAQSchema } from '@/components/seo/ToolSchema';
 import { BreadcrumbSchema } from '@/components/seo/BreadcrumbSchema';
-import { format, addDays, addMonths, addYears } from 'date-fns';
-import { de } from 'date-fns/locale';
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string; intent: string; slug: string[] }> }) {
     const { locale, intent, slug } = await params;
