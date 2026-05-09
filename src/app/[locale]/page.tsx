@@ -2,8 +2,10 @@ import { CalculatorCore } from '@/components/calculator/CalculatorCore';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { SmartInputBar } from '@/components/SmartInputBar';
 import { HomepageSEO } from '@/components/seo/HomepageSEO';
-import { locales } from '@/i18n/routing';
+import { locales, Link } from '@/i18n/routing';
 import { SITE_URL } from "@/lib/constants";
+import { ROUTES } from '@/lib/routes';
+import { SplitSquareHorizontal, PlusSquare, Briefcase, User } from 'lucide-react';
 
 export const dynamic = 'force-static';
 
@@ -62,6 +64,46 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
                         : 'Calculate exact time spans, add days or determine net business days. Fast, precise and 100% free.'}
                 </p>
             </header>
+
+            {/* Smart Hero CTA Selector */}
+            <section aria-label={locale === 'de' ? "Tools" : "Tools"} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-16 animate-slide-up-fade" style={{ animationDelay: '0.05s' }}>
+                <Link href={ROUTES.differenz} className="group p-5 rounded-2xl bg-white/[0.03] border border-white/10 hover:bg-white/[0.06] hover:border-white/20 transition-all shadow-lg hover:shadow-[0_0_20px_rgba(255,255,255,0.05)] text-left flex flex-col gap-3">
+                    <div className="w-10 h-10 rounded-xl bg-purple-500/20 flex items-center justify-center text-purple-400 group-hover:scale-110 transition-transform">
+                        <SplitSquareHorizontal className="w-5 h-5" />
+                    </div>
+                    <div>
+                        <h3 className="text-white font-bold text-lg mb-1">{locale === 'de' ? 'Datumsdifferenz' : 'Date Difference'}</h3>
+                        <p className="text-white/50 text-sm leading-snug">{locale === 'de' ? 'Tage zwischen zwei Daten berechnen' : 'Calculate days between two dates'}</p>
+                    </div>
+                </Link>
+                <Link href={ROUTES.addieren} className="group p-5 rounded-2xl bg-white/[0.03] border border-white/10 hover:bg-white/[0.06] hover:border-white/20 transition-all shadow-lg hover:shadow-[0_0_20px_rgba(255,255,255,0.05)] text-left flex flex-col gap-3">
+                    <div className="w-10 h-10 rounded-xl bg-neon/20 flex items-center justify-center text-neon group-hover:scale-110 transition-transform">
+                        <PlusSquare className="w-5 h-5" />
+                    </div>
+                    <div>
+                        <h3 className="text-white font-bold text-lg mb-1">{locale === 'de' ? 'Datum addieren' : 'Add to Date'}</h3>
+                        <p className="text-white/50 text-sm leading-snug">{locale === 'de' ? 'Tage addieren oder abziehen' : 'Add or subtract days from a date'}</p>
+                    </div>
+                </Link>
+                <Link href={ROUTES.arbeitstage} className="group p-5 rounded-2xl bg-white/[0.03] border border-white/10 hover:bg-white/[0.06] hover:border-white/20 transition-all shadow-lg hover:shadow-[0_0_20px_rgba(255,255,255,0.05)] text-left flex flex-col gap-3">
+                    <div className="w-10 h-10 rounded-xl bg-neon-blue/20 flex items-center justify-center text-neon-blue group-hover:scale-110 transition-transform">
+                        <Briefcase className="w-5 h-5" />
+                    </div>
+                    <div>
+                        <h3 className="text-white font-bold text-lg mb-1">{locale === 'de' ? 'Arbeitstage' : 'Business Days'}</h3>
+                        <p className="text-white/50 text-sm leading-snug">{locale === 'de' ? 'Netto-Arbeitstage ermitteln' : 'Calculate net business days'}</p>
+                    </div>
+                </Link>
+                <Link href={ROUTES.alter} className="group p-5 rounded-2xl bg-white/[0.03] border border-white/10 hover:bg-white/[0.06] hover:border-white/20 transition-all shadow-lg hover:shadow-[0_0_20px_rgba(255,255,255,0.05)] text-left flex flex-col gap-3">
+                    <div className="w-10 h-10 rounded-xl bg-green-500/20 flex items-center justify-center text-green-400 group-hover:scale-110 transition-transform">
+                        <User className="w-5 h-5" />
+                    </div>
+                    <div>
+                        <h3 className="text-white font-bold text-lg mb-1">{locale === 'de' ? 'Alter berechnen' : 'Age Calculator'}</h3>
+                        <p className="text-white/50 text-sm leading-snug">{locale === 'de' ? 'Genaues Alter in Tagen & Jahren' : 'Exact age in days and years'}</p>
+                    </div>
+                </Link>
+            </section>
 
             {/* Smart Input Search */}
             <section aria-label={locale === 'de' ? "Schnellsuche" : "Quick Search"} className="mb-12 animate-slide-up-fade" style={{ animationDelay: '0.1s' }}>

@@ -1,6 +1,8 @@
 import { CalculatorCore } from '@/components/calculator/CalculatorCore';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { notFound, redirect, permanentRedirect } from 'next/navigation';
+import NextLink from 'next/link';
+import { ChevronRight } from 'lucide-react';
 import { SEOContentBlock } from '@/components/seo/SEOContentBlock';
 import { FAQBlock } from '@/components/seo/FAQBlock';
 import { InternalLinksBlock } from '@/components/seo/InternalLinksBlock';
@@ -292,7 +294,7 @@ export default async function ProgrammaticPage({
         "@context": "https://schema.org",
         "@type": "Article",
         "headline": instantResult ? `${instantResult.headline} ${instantResult.highlight}` : `${intent} ${slugStr.replace(/-/g, ' ')}`,
-        "author": { "@type": "Organization", "name": "Datumsrechner" },
+        "author": { "@type": "Person", "name": "Felix Schmidt", "url": `${SITE_URL}${locale === 'de' ? '' : `/${locale}`}/ueber-uns` },
         "datePublished": "2024-01-01T00:00:00Z",
         "dateModified": new Date().toISOString()
     };
@@ -301,6 +303,18 @@ export default async function ProgrammaticPage({
         <article className="flex-1 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-24 space-y-16">
             <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
             <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }} />
+
+            <nav aria-label="Breadcrumb" className="mb-8 hidden sm:flex text-sm text-white/50 items-center justify-center space-x-2 animate-slide-up-fade">
+                <NextLink href={`${locale === 'de' ? '/' : `/${locale}`}`} className="hover:text-neon transition-colors">
+                    {isDe ? "Startseite" : "Home"}
+                </NextLink>
+                <ChevronRight className="w-4 h-4" />
+                <NextLink href={getCanonicalPath(locale, internalIntent)} className="hover:text-neon transition-colors">
+                    {isDe ? (mode === 'add_subtract' ? 'Datumsrechner' : 'Tage Zählen') : (mode === 'add_subtract' ? 'Date Calculator' : 'Days Counter')}
+                </NextLink>
+                <ChevronRight className="w-4 h-4" />
+                <span className="text-white/80" aria-current="page">{correctSlug.replace(/-/g, ' ')}</span>
+            </nav>
 
             <header className="w-full text-center space-y-8 animate-slide-up-fade">
                 {instantResult ? (

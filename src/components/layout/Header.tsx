@@ -16,6 +16,7 @@ import {
     ArrowRight,
     Globe,
     ChevronDown,
+    User,
 } from 'lucide-react';
 import { useTranslations, useLocale } from 'next-intl';
 
@@ -60,6 +61,7 @@ export function Header() {
         { href: ROUTES.differenz, label: t('Nav.differenz'), icon: SplitSquareHorizontal, description: t('Nav.differenzDesc') },
         { href: ROUTES.addieren,  label: t('Nav.addieren'),   icon: PlusSquare,             description: t('Nav.addierenDesc') },
         { href: ROUTES.arbeitstage, label: t('Nav.arbeitstage'), icon: Briefcase,           description: t('Nav.arbeitstageDesc') },
+        { href: ROUTES.alter,     label: t('Nav.alter'),      icon: User,                   description: t('Nav.alterDesc') },
         { href: ROUTES.ratgeber,  label: t('Nav.ratgeber'),   icon: BookOpen,               description: t('Nav.ratgeberDesc') },
     ];
 

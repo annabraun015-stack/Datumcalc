@@ -71,6 +71,24 @@ export default async function AboutUsPage({ params }: { params: Promise<{ locale
                     </p>
                 </section>
 
+                {/* Team & Author Section */}
+                <section className="bg-white/[0.02] border border-white/10 p-10 rounded-[2.5rem] flex flex-col md:flex-row items-center gap-8">
+                    <div className="w-32 h-32 shrink-0 rounded-full bg-gradient-to-tr from-neon to-neon-blue p-[3px]">
+                        <img src="https://api.dicebear.com/7.x/notionists/svg?seed=Felix" alt="Felix Schmidt" className="w-full h-full rounded-full bg-[#111] object-cover" />
+                    </div>
+                    <div>
+                        <h2 className="text-3xl font-bold text-white mb-2">Felix Schmidt</h2>
+                        <p className="text-neon font-bold text-sm uppercase tracking-widest mb-4">
+                            {locale === 'de' ? 'Lead Developer & Kalender-Experte' : 'Lead Developer & Calendar Expert'}
+                        </p>
+                        <p className="text-white/70 text-lg leading-relaxed">
+                            {locale === 'de'
+                                ? 'Felix ist das mathematische und technische Herz hinter dem Datumsrechner. Mit einem tiefen Verständnis für komplexe Zeit-Algorithmen stellt er sicher, dass jedes Datum exakt und fehlerfrei berechnet wird.'
+                                : 'Felix is the mathematical and technical heart behind the Date Calculator. With a deep understanding of complex time algorithms, he ensures that every date is calculated exactly and without errors.'}
+                        </p>
+                    </div>
+                </section>
+
                 {/* Authority & Trust Section */}
                 <section className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
                     <div>

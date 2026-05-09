@@ -16,7 +16,7 @@ const CONTENT: Record<string, any> = {
             },
             {
                 question: 'Werden Feiertage bei den Arbeitstagen berücksichtigt?',
-                answer: 'In der aktuellen Basisversion werden reguläre Wochenenden (Samstag und Sonntag) sicher herausgefiltert. Die Unterstützung für länderspezifische gesetzliche Feiertage (z.B. Weihnachten, Ostern) wird in Kürze in den Einstellungen konfigurierbar sein.',
+                answer: 'In der aktuellen Version werden reguläre Wochenenden (Samstag und Sonntag) sicher herausgefiltert. Eine automatische Berücksichtigung von gesetzlichen Feiertagen wird derzeit nicht nativ unterstützt, diese müssen manuell abgezogen werden.',
             },
             {
                 question: 'Werden Schaltjahre wie der 29. Februar korrekt berechnet?',
@@ -36,7 +36,7 @@ const CONTENT: Record<string, any> = {
             { icon: CalendarCheck2, label: 'Schaltjahre berechnet', color: 'text-neon-blue' },
             { icon: Clock4, label: 'Sekundenschnell', color: 'text-neon' },
             { icon: ShieldCheck, label: '100% kostenlos', color: 'text-white/70' },
-            { icon: Users, label: 'Millionen Nutzer', color: 'text-purple-400' },
+            { icon: Users, label: 'Seit 2024 online', color: 'text-purple-400' },
         ],
         hero: {
             title: 'Entdecke den Datumsrechner',
@@ -81,7 +81,7 @@ const CONTENT: Record<string, any> = {
             },
             {
                 question: 'Are public holidays taken into account for business days?',
-                answer: 'In the current basic version, regular weekends (Saturday and Sunday) are safely filtered out. Support for country-specific statutory holidays (e.g. Christmas, Easter) will be configurable in the settings shortly.',
+                answer: 'In the current version, regular weekends (Saturday and Sunday) are safely filtered out. Automatic consideration of public holidays is not natively supported at this time; they must be subtracted manually.',
             },
             {
                 question: 'Are leap years like February 29th calculated correctly?',
@@ -101,7 +101,7 @@ const CONTENT: Record<string, any> = {
             { icon: CalendarCheck2, label: 'Leap years calculated', color: 'text-neon-blue' },
             { icon: Clock4, label: 'Lightning fast', color: 'text-neon' },
             { icon: ShieldCheck, label: '100% free', color: 'text-white/70' },
-            { icon: Users, label: 'Millions of users', color: 'text-purple-400' },
+            { icon: Users, label: 'Online since 2024', color: 'text-purple-400' },
         ],
         hero: {
             title: 'Explore the Date Calculator',
@@ -197,9 +197,9 @@ export function HomepageSEO({ locale = 'de' }: { locale?: string }) {
         'dateModified': dateModified,
         'datePublished': '2024-01-01',
         'author': {
-            '@type': 'Organization',
-            'name': 'Datumsrechner',
-            '@id': `${siteUrl}/#organization`,
+            '@type': 'Person',
+            'name': 'Felix Schmidt',
+            'url': `${siteUrl}/${loc}/ueber-uns`,
         },
         'publisher': {
             '@type': 'Organization',
@@ -328,6 +328,16 @@ export function HomepageSEO({ locale = 'de' }: { locale?: string }) {
                                     <td className="py-4 px-5"><Link href="/arbeitstage" className="underline hover:text-white">Arbeitstage</Link></td>
                                     <td className="py-4 px-5 hidden md:table-cell">"Net business days Q4"</td>
                                 </tr>
+                                <tr className="hover:bg-white/[0.02] transition-colors">
+                                    <td className="py-4 px-5 text-purple-400 font-medium">{c.seo.case3}</td>
+                                    <td className="py-4 px-5"><Link href="/differenz" className="underline hover:text-white">Datumsdifferenz</Link></td>
+                                    <td className="py-4 px-5 hidden md:table-cell">"Tage bis Weihnachten"</td>
+                                </tr>
+                                <tr className="hover:bg-white/[0.02] transition-colors">
+                                    <td className="py-4 px-5 text-green-400 font-medium">{c.seo.case4}</td>
+                                    <td className="py-4 px-5"><Link href="/alter" className="underline hover:text-white">Altersrechner</Link></td>
+                                    <td className="py-4 px-5 hidden md:table-cell">"Alter am 01.01.2050"</td>
+                                </tr>
                             </tbody>
                         </table>
                     </div>
@@ -363,19 +373,21 @@ export function HomepageSEO({ locale = 'de' }: { locale?: string }) {
                     <h2 id="faq-heading" className="text-4xl font-extrabold mb-3 tracking-tight">{c.faqHeading.title}</h2>
                     <p className="text-white/50 text-lg">{c.faqHeading.subtitle}</p>
                 </header>
-                <div className="space-y-3">
+                <dl className="space-y-3">
                     {c.faqs.map((faq: any, i: number) => (
                         <details key={i} className="bg-white/[0.02] border border-white/[0.07] rounded-2xl px-6 py-5 group cursor-pointer hover:border-white/20 hover:bg-white/[0.04] transition-all">
                             <summary className="font-semibold text-lg list-none flex justify-between items-center text-white/85 group-hover:text-white">
-                                {faq.question}
+                                <dt className="inline">{faq.question}</dt>
                                 <span className="ml-4 shrink-0 text-neon group-open:rotate-180 transition-transform">▼</span>
                             </summary>
-                            <p className="text-white/60 mt-4 leading-relaxed text-base border-l-2 border-neon-blue/30 pl-4">
-                                {faq.answer}
-                            </p>
+                            <dd className="mt-4 border-l-2 border-neon-blue/30 pl-4">
+                                <p className="text-white/60 leading-relaxed text-base">
+                                    {faq.answer}
+                                </p>
+                            </dd>
                         </details>
                     ))}
-                </div>
+                </dl>
             </section>
         </article>
     );
